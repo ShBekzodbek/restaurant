@@ -4,7 +4,7 @@ const MenuSchema = {
     create: Joi.object().keys({
         nameOfFood:Joi.string().required(),
         cost: Joi.number().required(),
-        isPublished:Joi.boolean().required(),
+        publishedDate:Joi.boolean().required(),
     })
 }
 
