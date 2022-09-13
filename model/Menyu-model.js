@@ -35,7 +35,7 @@ const menyu= new Schema({
         email: String
     },
     publishedDate: {
-        type: [{ date: Date, default: new Date() }],
+        type: [{ date: Date}],
     }
 });
 
