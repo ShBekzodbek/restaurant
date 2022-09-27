@@ -12,6 +12,10 @@ const customerRouter = require('./source/costumer');
 
 
 app.use('/chief', chiefRouter);
+app.get('/hello', (req, res)=>{
+   res.send('hello world');
+   res.end('hello')
+})
 app.use('/costumer', customerRouter);
 
 app.use((error, req, res, next) => {
@@ -31,5 +35,5 @@ app.listen(port,()=>{
     console.error('Something went wrong connecting...', err);
 });
     console.log(`Server is running on port ${port}`);
-})
 
+})

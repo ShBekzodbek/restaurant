@@ -11,9 +11,4 @@ router.put('/:id', updateFood);//ishladi
 router.delete('/:id',deleteFood );//ishladi
 router.get('/meal/:cost',getFoodByCost);
 
-
-
-
 module.exports = router;
-
-
