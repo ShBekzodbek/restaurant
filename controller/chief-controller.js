@@ -1,11 +1,11 @@
 const Menyu = require('../model/Menyu-model')
 
 
-const getMenyu = async (req,res) => {
+const getMenyu = async (req,res, next) => {
  
     try {
          
-        const allMenyu= await Menyu.find();
+        const allMenyu= await Menyu.findById('asd');
          
         return res.status(200).json({
             message: "These are all menus",
@@ -14,21 +14,24 @@ const getMenyu = async (req,res) => {
      
 
     } catch (error) {
-      res.send(error);  
+        error.statusCode = error.statusCode || 500;
+        error.data = { extra:'This is extra'}
+      next(error);
     }
 
 }
 
 const getFoodById = async (req,res)=>{
     try {
-        const menyuById = await Menyu.findById(req.params.id);
+        const menyuById = await Menyu.findById();
 
         if(!menyuById) return res.status(404).json({message:'Menyu not found'});
 
         return res.status(200).json({message:'Successfully ', menyuById});
 
     } catch (error) {
-        res.send(error);
+        error.statusCode = error.statusCode || 500;
+        next(errror);
     }
 }
 
@@ -41,11 +44,12 @@ const addFood = async (req,res)=>{
             message:'add food'
         });
     } catch (error) {
-        console.log(error);
+        error.statusCode = error.statusCode || 500;
+        next(errror);
     }
 }
 
-const updateFood= async (req, res) => { 
+const updateFood= async (req, res, next) => { 
   
     try {
         
@@ -59,7 +63,8 @@ const updateFood= async (req, res) => {
        })
 
     } catch (error) {
-        console.log(error);
+        error.statusCode = error.statusCode || 500;
+        next(error);
     }
 
 };
